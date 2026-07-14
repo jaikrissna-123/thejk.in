@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Manager - JK Finance & Tax Professional</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>JK Finance & Tax</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="invoices.html" class="active">Invoice Manager</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h2>Invoice Manager</h2>
+            </div>
+        </section>
+
+        <section class="invoice-manager">
+            <div class="container">
+                <div class="invoice-form">
+                    <h3>Add New Invoice</h3>
+                    <form id="invoiceForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="invoiceNo">Invoice No *</label>
+                                <input type="text" id="invoiceNo" name="invoiceNo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="invoiceCurrency">Invoice Currency *</label>
+                                <select id="invoiceCurrency" name="invoiceCurrency" required>
+                                    <option value="">Select Currency</option>
+                                    <option value="INR">INR (₹)</option>
+                                    <option value="USD">USD ($)</option>
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="GBP">GBP (£)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="totalAmount">Total Invoice Amount *</label>
+                                <input type="number" id="totalAmount" name="totalAmount" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="terms">Terms of Invoice *</label>
+                                <input type="text" id="terms" name="terms" placeholder="e.g., Net 30, Due on receipt" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="transportDocNo">Transport Doc No *</label>
+                                <input type="text" id="transportDocNo" name="transportDocNo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transportDate">Transport Date *</label>
+                                <input type="date" id="transportDate" name="transportDate" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="consignee">Consignee</label>
+                                <input type="text" id="consignee" name="consignee" placeholder="Recipient details">
+                            </div>
+                            <div class="form-group">
+                                <label for="supplierName">Supplier Name *</label>
+                                <input type="text" id="supplierName" name="supplierName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="notes">Additional Notes</label>
+                                <textarea id="notes" name="notes" rows="4" placeholder="Any additional information..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Invoice</button>
+                    </form>
+                </div>
+
+                <div class="invoices-list">
+                    <h3>Recent Invoices</h3>
+                    <div id="invoicesTableContainer">
+                        <table id="invoicesTable">
+                            <thead>
+                                <tr>
+                                    <th>Invoice No</th>
+                                    <th>Supplier</th>
+                                    <th>Amount</th>
+                                    <th>Currency</th>
+                                    <th>Transport Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoicesList">
+                                <tr>
+                                    <td colspan="6" class="text-center">No invoices added yet</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JK Finance & Tax. All rights reserved.</p>
+            <p>Email: contact@thejk.in | Phone: +91 [Your Phone]</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
