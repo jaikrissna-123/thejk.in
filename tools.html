@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="TheJK.in Tools — practical finance calculators for investing, tax and personal finance.">
+<meta name="theme-color" content="#111111">
+<title>Finance Tools | TheJK.in</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.tool-hero{padding:90px 6vw 70px;border-bottom:1px solid #d9d9d6}
+.tool-hero h1{font-size:clamp(50px,8vw,105px);line-height:.92;letter-spacing:-5px;margin:35px 0}
+.tool-hero p{font-size:22px;max-width:760px;color:#40556a}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #d9d9d6}
+.tool-card{background:#fff;padding:32px;min-height:250px;border-right:1px solid #d9d9d6;border-bottom:1px solid #d9d9d6}
+.tool-card:nth-child(3n){border-right:0}
+.tool-card h3{font-size:25px;margin:20px 0 12px}
+.tool-card p{color:#637487;min-height:50px}
+.tool-card button{margin-top:20px;background:#111;color:#fff;border:0;padding:11px 17px;cursor:pointer;font-weight:700}
+.calculator{display:none;margin-top:35px;border:1px solid #d9d9d6;background:#fff;padding:40px}
+.calculator.active{display:block}
+.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:#43576a}
+input{width:100%;padding:13px 14px;border:1px solid #c8c8c3;background:#fafaf8;outline:none}
+.calc-actions{margin-top:24px;display:flex;gap:12px}
+.primary,.secondary{border:0;padding:13px 20px;cursor:pointer;font-weight:700}
+.primary{background:#111;color:#fff}.secondary{background:#e9e9e5;color:#111}
+.result{margin-top:25px;padding:22px;background:#f0f2f3;border-left:4px solid #173b63;font-size:19px}
+.note{margin-top:30px;color:#637487;font-size:14px}
+@media(max-width:900px){
+ .tool-hero{padding:65px 25px 55px}.tool-hero h1{letter-spacing:-3px}
+ .tools-grid{grid-template-columns:1fr}.tool-card{border-right:0}
+ .calc-grid{grid-template-columns:1fr}.calculator{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="index.html">TheJK.in</a>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+<nav class="nav">
+<a href="index.html">Home</a><a href="index.html#about">About</a><a href="finance.html">Finance</a><a href="tools.html">Tools</a><a href="index.html#contact">Contact</a>
+</nav>
+</header>
+
+<main>
+<section class="tool-hero">
+<div class="section-label">FINANCE · TOOLS</div>
+<h1>Simple tools.<br>Better decisions.</h1>
+<p>Practical calculators for investing, personal finance and everyday financial decisions — designed to be simple, transparent and useful.</p>
+</section>
+
+<section class="section">
+<div class="section-label">01 — CALCULATORS</div>
+<h2 class="section-title">Start with the numbers.</h2>
+<div class="tools-grid">
+<div class="tool-card"><span class="tag">01</span><h3>Income Tax</h3><p>Estimate income tax under India's new tax regime.</p><button onclick="showCalc('tax')">Open calculator →</button></div>
+<div class="tool-card"><span class="tag">02</span><h3>SIP</h3><p>Estimate the future value of regular monthly investing.</p><button onclick="showCalc('sip')">Open calculator →</button></div>
+<div class="tool-card"><span class="tag">03</span><h3>CAGR</h3><p>Calculate annualised growth between two investment values.</p><button onclick="showCalc('cagr')">Open calculator →</button></div>
+<div class="tool-card"><span class="tag">04</span><h3>XIRR</h3><p>Coming next — measure annualised returns on irregular cash flows.</p><button disabled>Coming soon</button></div>
+<div class="tool-card"><span class="tag">05</span><h3>Capital Gains</h3><p>Coming next — organise gains for Indian equity investments.</p><button disabled>Coming soon</button></div>
+<div class="tool-card"><span class="tag">06</span><h3>Net Worth</h3><p>Coming next — calculate assets minus liabilities in one view.</p><button disabled>Coming soon</button></div>
+</div>
+
+<div id="calculator" class="calculator">
+<h3 id="calcTitle" style="font-size:30px;margin-top:0"></h3>
+<div id="calcFields" class="calc-grid"></div>
+<div class="calc-actions">
+<button class="primary" onclick="calculate()">Calculate</button>
+<button class="secondary" onclick="closeCalc()">Close</button>
+</div>
+<div id="calcResult" class="result" style="display:none"></div>
+<div class="note">For education and planning only. Tax calculations are estimates and should be independently verified before filing or making financial decisions.</div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-label">02 — COMING NEXT</div>
+<h2 class="section-title">More useful tools, one step at a time.</h2>
+<div class="article-list">
+<div class="mini"><span class="tag">INVESTING</span><h3>Portfolio Tracker</h3><p>A simple place to track holdings, cost, current value, gain/loss and allocation.</p></div>
+<div class="mini"><span class="tag">TAX</span><h3>Tax Planning</h3><p>Practical calculators and checklists for common Indian personal-tax decisions.</p></div>
+<div class="mini"><span class="tag">FINANCE</span><h3>Excel Templates</h3><p>Downloadable finance templates will be introduced after the free tools are established.</p></div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<span>© 2026 TheJK.in</span>
+<span>Ideas · Experience · Perspectives</span>
+</footer>
+
+<script>
+let calcType='';
+const configs={
+ tax:{title:'Income Tax Estimator — New Tax Regime',fields:[
+ ['income','Annual taxable income (₹)','number','1200000'],
+ ['deduction','Eligible deduction / adjustment (₹)','number','0'],
+ ['cess','Health & Education Cess (%)','number','4']]},
+ sip:{title:'SIP Calculator',fields:[
+ ['monthly','Monthly investment (₹)','number','10000'],
+ ['rate','Expected annual return (%)','number','12'],
+ ['years','Period (years)','number','10']]},
+ cagr:{title:'CAGR Calculator',fields:[
+ ['start','Starting value (₹)','number','100000'],
+ ['end','Ending value (₹)','number','150000'],
+ ['years','Investment period (years)','number','3']]}
+};
+
+function showCalc(type){
+ calcType=type; const c=configs[type];
+ document.getElementById('calcTitle').textContent=c.title;
+ document.getElementById('calcFields').innerHTML=c.fields.map(f=>`<div><label>${f[1]}</label><input id="${f[0]}" type="${f[2]}" value="${f[3]}" min="0" step="any"></div>`).join('');
+ document.getElementById('calcResult').style.display='none';
+ document.getElementById('calculator').classList.add('active');
+ document.getElementById('calculator').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function v(id){return Number(document.getElementById(id).value)||0}
+function money(n){return new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(n)}
+function calculate(){
+ let r='';
+ if(calcType==='sip'){
+  const m=v('monthly'),i=v('rate')/12/100,n=v('years')*12;
+  const fv=i?m*((Math.pow(1+i,n)-1)/i)*(1+i):m*n;
+  r=`Estimated value: <strong>${money(fv)}</strong><br>Amount invested: ${money(m*n)}<br>Estimated gain: ${money(fv-m*n)}`;
+ } else if(calcType==='cagr'){
+  const start=v('start'),end=v('end'),years=v('years');
+  const x=start>0&&years>0?(Math.pow(end/start,1/years)-1)*100:0;
+  r=`CAGR: <strong>${x.toFixed(2)}%</strong> per year.`;
+ } else if(calcType==='tax'){
+  const income=Math.max(0,v('income')-v('deduction'));
+  const cess=v('cess')/100;
+  // FY 2026-27 illustrative new-regime slabs; verify before filing.
+  const slabs=[[400000,0],[400000,.05],[400000,.10],[400000,.15],[400000,.20],[400000,.25],[Infinity,.30]];
+  let remaining=income,tax=0;
+  for(const [limit,rate] of slabs){const amt=Math.min(remaining,limit); if(amt>0) tax+=amt*rate; remaining-=amt; if(remaining<=0) break;}
+  const rebate=income<=1200000?Math.min(tax,60000):0;
+  const netTax=tax-rebate;
+  const total=netTax+netTax*cess;
+  r=`Estimated tax before cess: <strong>${money(netTax)}</strong><br>Estimated cess: ${money(netTax*cess)}<br>Estimated total tax: <strong>${money(total)}</strong>${rebate>0?'<br>Rebate applied in this estimate.':''}`;
+ }
+ const el=document.getElementById('calcResult');el.innerHTML=r;el.style.display='block';
+}
+function closeCalc(){document.getElementById('calculator').classList.remove('active')}
+</script>
+</body>
+</html>
