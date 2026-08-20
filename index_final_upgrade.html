@@ -1,20 +1,158 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="TheJK.in — ideas, experience and perspectives across engineering, finance, markets, automobiles and technology."><meta name="theme-color" content="#111111"><title>TheJK.in | Ideas. Experience. Perspectives.</title><link rel="stylesheet" href="style.css"><style>
-html{font-size:93%;}
-.hero-title{font-size:clamp(26px,3.8vw,48px)!important;line-height:1.02;}
-.hero-copy{font-size:clamp(15px,1.6vw,18px)!important;}
-.eyebrow,.section-label{font-size:12px!important;letter-spacing:.08em;}
-.intro-grid h2,.insight-head h2,.cta h2{font-size:clamp(22px,2.6vw,32px)!important;line-height:1.15;}
-.card h3{font-size:18px!important;}
-.insight-item h3{font-size:17px!important;}
-.card p,.insight-item p,.intro-grid p,.cta p{font-size:14px!important;}
-</style></head><body>
-<header class="site-header"><a class="brand" href="#home">TheJK.in</a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button><nav class="nav"><a href="#home">Home</a><a href="tools.html">Tools</a><a href="#about">About</a><a href="#topics">Topics</a><a href="#insights">Insights</a><a href="#contact">Contact</a></nav></header>
-<main id="home"><section class="hero"><div class="eyebrow">PERSONAL WEBSITE</div><h1 class="hero-title">Ideas.<br>Experience.<br><em>Perspectives.</em></h1><p class="hero-copy">Engineering, finance, markets, automobiles and technology — explored through experience, curiosity and practical thinking.</p><div class="hero-actions"><a class="button button-dark" href="#topics">Explore</a><a class="text-link" href="#about">About this site →</a></div></section>
-<section class="intro section" id="about"><div class="section-label">ABOUT</div><div class="intro-grid"><h2>A space for things worth thinking about.</h2><div><p>TheJK.in is a personal space for ideas, observations, analysis and useful information gathered along the way.</p><p class="muted">More personal and professional details will be added gradually.</p></div></div></section>
-<section class="section" id="topics"><div class="section-label">EXPLORE</div><div class="cards">
-<article class="card"><h3>Finance & Markets</h3><p>Market observations, company analysis, investing concepts and practical finance.</p><a href="finance.html">Explore finance →</a></article>
-<article class="card"><h3>Engineering</h3><p>Professional experience, systems thinking, business processes and lessons learned.</p><a href="engineering.html">Explore engineering →</a></article>
-<article class="card"><h3>Automobiles</h3><p>Cars, mobility, transportation and the technology shaping how we move.</p><a href="automobiles.html">Explore automobiles →</a></article>
-<article class="card"><h3>Technology</h3><p>Useful tools, digital ideas, websites, AI and technology worth exploring.</p><a href="technology.html">Explore technology →</a></article></div></section>
-<section class="insights section" id="insights"><div class="section-label">INSIGHTS</div><div class="insight-head"><h2>Coming together, one idea at a time.</h2><p>Selected notes and articles will appear here as the site grows.</p></div><div class="insight-list"><article class="insight-item"><div><small>FINANCE</small><h3>Market observations & investing notes</h3><p>Practical thoughts on markets, valuation and long-term decision making.</p></div><span class="status">SOON</span></article><article class="insight-item"><div><small>ENGINEERING</small><h3>Experience, systems & problem solving</h3><p>Ideas shaped by professional experience and a practical engineering mindset.</p></div><span class="status">SOON</span></article><article class="insight-item"><div><small>AUTOMOBILES</small><h3>Mobility, cars & transportation</h3><p>Observations on vehicles, mobility and the changing transportation landscape.</p></div><span class="status">SOON</span></article></div></section>
-<section class="cta section" id="contact"><div><div class="section-label">CONTACT</div><h2>Have an idea worth discussing?</h2><p class="muted">Contact details will be added here.</p></div><a class="button button-light" href="mailto:">Get in touch →</a></section></main><footer class="footer"><span>© 2026 TheJK.in</span><span>Ideas · Experience · Perspectives</span></footer><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="TheJK.in — ideas, experience and perspectives across engineering, finance, markets, automobiles and technology.">
+<meta name="theme-color" content="#111111">
+<title>TheJK.in | Ideas. Experience. Perspectives.</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* Compact one-page home */
+html { font-size: 90%; }
+html, body { height: 100%; overflow: hidden; }
+body { margin: 0; }
+.site-header { min-height: 52px; padding: 0 3vw; }
+.hero {
+  min-height: 0 !important;
+  height: calc(100vh - 52px);
+  box-sizing: border-box;
+  padding: 5vh 6vw 4vh !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-title {
+  font-size: clamp(25px, 3.2vw, 42px) !important;
+  line-height: .96 !important;
+  margin: .45rem 0 .7rem !important;
+}
+.hero-title br { display:none; }
+.hero-copy {
+  max-width: 680px;
+  font-size: clamp(13px, 1.25vw, 16px) !important;
+  line-height: 1.4 !important;
+  margin-bottom: 1.2rem !important;
+}
+.hero-actions { display:none; }
+.eyebrow { font-size: 10px !important; letter-spacing: .1em; }
+
+/* Replace the long scrolling homepage with a compact navigation panel */
+.compact-home {
+  display:grid;
+  grid-template-columns: minmax(220px, .85fr) minmax(360px, 1.5fr);
+  gap: clamp(20px, 4vw, 55px);
+  align-items:center;
+  max-width:1100px;
+  width:100%;
+  margin:auto;
+}
+.compact-copy p { max-width:520px; }
+.compact-copy .muted { font-size:13px; }
+
+.page-buttons {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(150px,1fr));
+  gap:12px;
+}
+.page-button {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:64px;
+  padding:0 18px;
+  border:1px solid rgba(17,17,17,.16);
+  border-radius:10px;
+  background:#fff;
+  color:#111;
+  text-decoration:none;
+  font-weight:600;
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.page-button:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+.page-button small {
+  display:block;
+  margin-top:3px;
+  font-size:11px;
+  font-weight:400;
+  opacity:.6;
+}
+.page-button span { font-size:20px; opacity:.55; }
+
+@media (max-width:760px) {
+  html,body { overflow:auto; }
+  .hero { height:auto; min-height:100vh !important; padding:8vh 6vw !important; }
+  .compact-home { grid-template-columns:1fr; }
+  .page-buttons { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:430px) {
+  .page-buttons { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home">TheJK.in</a>
+  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="nav">
+    <a href="#home">Home</a>
+    <a href="tools.html">Tools</a>
+    <a href="#about">About</a>
+    <a href="#topics">Topics</a>
+    <a href="#insights">Insights</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="compact-home">
+    <div class="compact-copy">
+      <div class="eyebrow">PERSONAL WEBSITE</div>
+      <h1 class="hero-title">Ideas. Experience. <em>Perspectives.</em></h1>
+      <p class="hero-copy">Engineering, finance, markets, automobiles and technology — explored through experience, curiosity and practical thinking.</p>
+      <p class="muted">A compact home for useful ideas, observations and information.</p>
+    </div>
+
+    <nav class="page-buttons" aria-label="TheJK.in sections">
+      <a class="page-button" href="finance.html">
+        <div>Finance &amp; Markets<small>Analysis &amp; practical finance</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="engineering.html">
+        <div>Engineering<small>Systems &amp; experience</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="automobiles.html">
+        <div>Automobiles<small>Cars &amp; mobility</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="technology.html">
+        <div>Technology<small>AI, tools &amp; digital ideas</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="#insights">
+        <div>Insights<small>Notes &amp; articles</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="tools.html">
+        <div>Tools<small>Useful resources</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="#about">
+        <div>About<small>About TheJK.in</small></div><span>→</span>
+      </a>
+      <a class="page-button" href="#contact">
+        <div>Contact<small>Get in touch</small></div><span>→</span>
+      </a>
+    </nav>
+  </div>
+</section>
+
+<!-- Kept for existing anchor/navigation compatibility -->
+<section id="about" hidden></section>
+<section id="topics" hidden></section>
+<section id="insights" hidden></section>
+<section id="contact" hidden></section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
